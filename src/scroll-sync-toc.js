@@ -51,7 +51,6 @@ class ScrollSyncToc extends React.Component {
   handleScroll() {
     const { itemTopOffsets } = this.state;
 
-    console.log(itemTopOffsets)
     const item = itemTopOffsets.find((current, i) => {
       const next = itemTopOffsets[i + 1]
 
@@ -158,7 +157,6 @@ const _getElementTopOffsetsById = ids => {
   return ids
     .map(({value, id, parents}) => {
       const element = document.getElementById(id);
-      console.log(element, id)
       return element
         ? {
           id,

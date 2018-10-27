@@ -4,7 +4,6 @@ import { HashLink as Link } from 'react-router-hash-link';
 class Toc extends React.Component {
   render() {
     const { toc, activeItemIds } = this.props;
-    console.log(activeItemIds)
     // const attached = _createTocHTML(toc, activeItemIds);
     const items = toc.map(item => {
       return (
