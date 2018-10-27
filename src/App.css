@@ -30,3 +30,9 @@
     transform: rotate(360deg);
   }
 }
+
+.active {
+  background-color: #fffbf0;
+  color: #888;
+  transition: background-color 0.2s ease-out;
+}

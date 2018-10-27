@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 import Viewer from './viewer'
+import ScrollSyncToc from './scroll-sync-toc'
+import { BrowserRouter } from 'react-router-dom'
 
 class App extends Component {
 
   render() {
-    const rowMarkdownBody = `## なにこれ
+    const rawMarkdownBody = `## なにこれ
 ReactでMarkdownファイルを読み込んで表示するアプリ。\n
 目次も表示します。特徴としては目次においてスクロールに応じて現在表示中のセクションがハイライトされます。
 
@@ -224,12 +226,26 @@ ReactでMarkdownファイルを読み込んで表示するアプリ。\n
     `;
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1>react-markdown-sync-toc</h1>
-        </header>
-        <Viewer rowMarkdownBody={rowMarkdownBody}></Viewer>
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <header className="App-header">
+            <h1>react-markdown-sync-toc</h1>
+          </header>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '70% 1fr',
+            }}>
+            <Viewer rawMarkdownBody={rawMarkdownBody} />
+            <div style={{
+              position: 'sticky',
+              maxHeight: '100vh',
+              top: '24px',
+              }}>
+              <ScrollSyncToc rawMarkdownBody={rawMarkdownBody} />
+            </div>
+          </div>
+        </div>
+      </BrowserRouter>
     );
   }
 }

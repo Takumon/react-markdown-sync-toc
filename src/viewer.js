@@ -1,6 +1,7 @@
 import React from 'react'
 import unified from 'unified'
 import markdown from 'remark-parse'
+import slug from 'remark-slug'
 import remark2rehype from 'remark-rehype'
 import html from 'rehype-stringify'
 
@@ -8,14 +9,15 @@ import html from 'rehype-stringify'
 
 class Viewer extends React.Component {
   render() {
-    const { rowMarkdownBody} = this.props
+    const { rawMarkdownBody} = this.props
 
     const { contents } =
       unified()
-        .use(markdown)
-        .use(remark2rehype)
+      .use(markdown)
+      .use(slug)
+      .use(remark2rehype)
         .use(html)
-        .processSync(rowMarkdownBody)
+        .processSync(rawMarkdownBody)
 
     return <div style={{textAlign: 'left', padding: '24px' }} dangerouslySetInnerHTML={{ __html: contents}}></div>
   }
